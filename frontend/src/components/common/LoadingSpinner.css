@@ -1,0 +1,45 @@
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.loading-spinner__glow {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-spinner__glow::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  background: var(--saffron-glow);
+  border-radius: 50%;
+  filter: blur(10px);
+  opacity: 0.4;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.loading-spinner__svg {
+  animation: spin 1s linear infinite;
+  position: relative;
+  z-index: 1;
+}
+
+.loading-spinner__track {
+  stroke: var(--bg-tertiary);
+}
+
+.loading-spinner__circle {
+  stroke: var(--saffron);
+  filter: drop-shadow(0 0 4px var(--saffron-glow));
+}
+
+.loading-spinner__text {
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+  animation: pulse 1.5s ease-in-out infinite;
+}
