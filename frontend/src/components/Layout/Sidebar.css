@@ -1,0 +1,127 @@
+/* ---------- Desktop Sidebar ---------- */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: var(--header-height);
+  bottom: 0;
+  width: var(--sidebar-width);
+  background: rgba(10, 10, 15, 0.6);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-right: 1px solid var(--glass-border);
+  padding: var(--space-lg) var(--space-md);
+  z-index: var(--z-sticky);
+  overflow-y: auto;
+}
+
+.sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: 0.75rem 1rem;
+  font-size: var(--font-sm);
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  transition: var(--transition-base);
+  position: relative;
+}
+
+.sidebar__link:hover {
+  color: var(--text-primary);
+  background: var(--glass-bg);
+}
+
+.sidebar__link--active {
+  color: var(--saffron);
+  background: var(--saffron-subtle);
+}
+
+.sidebar__link--active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 24px;
+  background: var(--gradient-saffron);
+  border-radius: var(--radius-full);
+}
+
+.sidebar__icon-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar__glow {
+  position: absolute;
+  inset: -6px;
+  background: var(--saffron-glow);
+  border-radius: 50%;
+  filter: blur(8px);
+  opacity: 0.5;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.sidebar__label {
+  white-space: nowrap;
+}
+
+/* ---------- Mobile Bottom Nav ---------- */
+.show-mobile {
+  display: none;
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 64px;
+  background: rgba(10, 10, 15, 0.9);
+  backdrop-filter: var(--glass-blur-heavy);
+  -webkit-backdrop-filter: var(--glass-blur-heavy);
+  border-top: 1px solid var(--glass-border);
+  z-index: var(--z-sticky);
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.bottom-nav__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 0.5rem;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+.bottom-nav__link--active {
+  color: var(--saffron);
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+
+  .show-mobile {
+    display: flex;
+  }
+}
