@@ -1,0 +1,100 @@
+.ingredient-list {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.ingredient-list__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+  flex-shrink: 0;
+}
+
+.ingredient-list__icon {
+  color: var(--herb);
+}
+
+.ingredient-list__title {
+  font-size: var(--font-base);
+  font-weight: 600;
+  flex: 1;
+}
+
+.ingredient-list__count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: var(--herb-subtle);
+  color: var(--herb);
+  font-size: var(--font-xs);
+  font-weight: 700;
+  border-radius: 50%;
+}
+
+.ingredient-list__empty {
+  text-align: center;
+  padding: var(--space-xl) var(--space-md);
+  color: var(--text-tertiary);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.ingredient-list__empty p {
+  font-size: var(--font-base);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-xs);
+}
+
+.ingredient-list__empty span {
+  font-size: var(--font-sm);
+}
+
+.ingredient-list__chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+  flex: 1;
+  overflow-y: auto;
+  min-height: 60px;
+  scrollbar-width: thin;
+}
+
+.ingredient-list__chip {
+  animation: slideUp 0.3s ease both;
+}
+
+.ingredient-list__chip-name {
+  text-transform: capitalize;
+}
+
+.ingredient-list__chip-confidence {
+  font-size: 10px;
+  opacity: 0.7;
+}
+
+.ingredient-list__add {
+  display: flex;
+  gap: var(--space-sm);
+  flex-shrink: 0;
+}
+
+.ingredient-list__input {
+  flex: 1;
+}
+
+.ingredient-list__add-btn {
+  flex-shrink: 0;
+}
