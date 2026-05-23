@@ -29,3 +29,5 @@ backend/data/chroma_db/
 .DS_Store
 .vscode/
 .idea/
+generate_git_history.sh
+sample_recipes.json
