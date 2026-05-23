@@ -1,0 +1,104 @@
+[
+  {
+    "title": "Tomato Chickpea Skillet",
+    "cuisine": "Mediterranean",
+    "diet_type": "vegetarian",
+    "dietary_tags": ["vegetarian", "high-protein"],
+    "ingredients": [
+      "1 cup cooked chickpeas",
+      "2 tomatoes, chopped",
+      "1 onion, sliced",
+      "2 cloves garlic, minced",
+      "1 tablespoon olive oil",
+      "1 teaspoon cumin",
+      "Salt and pepper"
+    ],
+    "instructions": [
+      "Warm olive oil in a skillet over medium heat.",
+      "Cook onion and garlic until soft.",
+      "Add tomatoes, cumin, salt, and pepper.",
+      "Stir in chickpeas and simmer for 10 minutes.",
+      "Serve warm with bread, rice, or greens."
+    ],
+    "cook_time": "20 minutes",
+    "difficulty": "easy",
+    "servings": 2
+  },
+  {
+    "title": "Paneer Vegetable Rice Bowl",
+    "cuisine": "Indian",
+    "diet_type": "vegetarian",
+    "dietary_tags": ["vegetarian"],
+    "ingredients": [
+      "1 cup cooked rice",
+      "150 grams paneer, cubed",
+      "1 bell pepper, sliced",
+      "1 carrot, sliced",
+      "1 teaspoon garam masala",
+      "1 tablespoon oil",
+      "Salt"
+    ],
+    "instructions": [
+      "Heat oil in a pan over medium heat.",
+      "Sear paneer cubes until lightly golden.",
+      "Add bell pepper and carrot and cook for 4 minutes.",
+      "Season with garam masala and salt.",
+      "Serve the paneer vegetables over warm rice."
+    ],
+    "cook_time": "25 minutes",
+    "difficulty": "easy",
+    "servings": 2
+  },
+  {
+    "title": "Lemon Garlic Chicken Salad",
+    "cuisine": "American",
+    "diet_type": "non-vegetarian",
+    "dietary_tags": ["high-protein", "low-carb"],
+    "ingredients": [
+      "1 chicken breast",
+      "2 cups lettuce",
+      "1 cucumber, sliced",
+      "1 tomato, chopped",
+      "1 tablespoon lemon juice",
+      "1 tablespoon olive oil",
+      "1 clove garlic, minced",
+      "Salt and pepper"
+    ],
+    "instructions": [
+      "Season chicken with garlic, salt, and pepper.",
+      "Cook chicken in a pan until fully cooked.",
+      "Rest the chicken for 5 minutes, then slice it.",
+      "Toss lettuce, cucumber, tomato, lemon juice, and olive oil.",
+      "Top the salad with sliced chicken."
+    ],
+    "cook_time": "30 minutes",
+    "difficulty": "medium",
+    "servings": 2
+  },
+  {
+    "title": "Vegan Coconut Lentil Soup",
+    "cuisine": "Thai",
+    "diet_type": "vegan",
+    "dietary_tags": ["vegan", "dairy-free"],
+    "ingredients": [
+      "1 cup red lentils",
+      "1 cup coconut milk",
+      "1 carrot, diced",
+      "1 onion, diced",
+      "2 cloves garlic, minced",
+      "1 teaspoon curry powder",
+      "3 cups vegetable stock",
+      "Salt"
+    ],
+    "instructions": [
+      "Cook onion, carrot, and garlic in a pot until softened.",
+      "Add curry powder and stir for 30 seconds.",
+      "Add lentils and vegetable stock.",
+      "Simmer until lentils are tender.",
+      "Stir in coconut milk and season with salt."
+    ],
+    "cook_time": "35 minutes",
+    "difficulty": "easy",
+    "servings": 3
+  }
+]

@@ -1,0 +1,28 @@
+[project]
+name = "multimodal-recipe-generator-backend"
+version = "0.1.0"
+description = "FastAPI backend for a multimodal RAG recipe generator."
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "python-dotenv",
+    "pydantic",
+    "pydantic-settings",
+    "langchain",
+    "langchain-openai",
+    "langchain-community",
+    "langchain-chroma",
+    "langchain-google-genai",
+    "langchain-huggingface",
+    "sentence-transformers",
+    "langgraph",
+    "chromadb",
+    "tavily-python",
+    "pypdf",
+    "python-multipart",
+    "rank-bm25",
+]
+
+[tool.uv]
+package = false
