@@ -2,12 +2,18 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { Home, Camera, BookOpen, Upload } from 'lucide-react';
 import './Sidebar.css';
 
+import { Bookmark } from 'lucide-react';
+
 const navItems = [
   { path: '/', icon: Home, label: 'Home' },
   { path: '/scan', icon: Camera, label: 'Scan' },
   { path: '/recipes', icon: BookOpen, label: 'Recipes' },
-  { path: '/library', icon: Upload, label: 'Library' },
+  { path: '/saved', icon: Bookmark, label: 'Favorites' },
 ];
+
+if (import.meta.env.DEV || import.meta.env.VITE_ENABLE_ADMIN === 'true') {
+  navItems.push({ path: '/library', icon: Upload, label: 'Library' });
+}
 
 export default function Sidebar() {
   const location = useLocation();

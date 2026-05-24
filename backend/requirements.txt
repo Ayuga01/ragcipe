@@ -6,12 +6,11 @@ pydantic-settings
 langchain
 langchain-openai
 langchain-community
-langchain-chroma
 langchain-google-genai
 langchain-huggingface
 sentence-transformers
 langgraph
-chromadb
 tavily-python
 pypdf
 python-multipart
+supabase

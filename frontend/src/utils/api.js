@@ -63,4 +63,21 @@ export const api = {
 
   getCollectionStats: () =>
     fetch(`${API_BASE}/collection-stats`).then(parseResponse),
+
+  saveRecipe: (sessionId, recipe) =>
+    fetch(`${API_BASE}/recipes/save`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ session_id: sessionId, recipe }),
+    }).then(parseResponse),
+
+  getSavedRecipes: (sessionId) =>
+    fetch(`${API_BASE}/recipes/saved?session_id=${encodeURIComponent(sessionId)}`).then(parseResponse),
+
+  deleteSavedRecipe: (sessionId, recipeId) =>
+    fetch(`${API_BASE}/recipes/delete`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ session_id: sessionId, recipe_id: recipeId }),
+    }).then(parseResponse),
 };

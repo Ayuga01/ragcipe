@@ -17,7 +17,11 @@ import {
   Wand2,
   MessageCircle,
   Send,
+  Heart,
+  Bookmark,
 } from 'lucide-react';
+import { getSessionId } from './utils/session';
+import SavedRecipesPage from './pages/SavedRecipesPage';
 import CameraCapture from './components/Camera/CameraCapture';
 import IngredientList from './components/Camera/IngredientList';
 import DietaryPreferences from './components/Preferences/DietaryPreferences';
@@ -97,6 +101,23 @@ function RecipeCard({ recipe }) {
   const [chatInput, setChatInput] = useState('');
   const [isChatting, setIsChatting] = useState(false);
   const [chatError, setChatError] = useState('');
+  
+  // Save state
+  const [isSaving, setIsSaving] = useState(false);
+  const [saveSuccess, setSaveSuccess] = useState(false);
+
+  const handleSave = async (e) => {
+    e.stopPropagation();
+    setIsSaving(true);
+    try {
+      await api.saveRecipe(getSessionId(), recipe);
+      setSaveSuccess(true);
+    } catch (err) {
+      console.error("Failed to save recipe", err);
+    } finally {
+      setIsSaving(false);
+    }
+  };
 
   const handleChatSubmit = async (e) => {
     e.preventDefault();
@@ -134,6 +155,16 @@ function RecipeCard({ recipe }) {
           <Badge variant={recipe.source === 'web' ? 'info' : 'saffron'}>
             {recipe.source}
           </Badge>
+          <button 
+            type="button" 
+            className="btn btn--ghost btn--sm" 
+            onClick={handleSave} 
+            disabled={isSaving || saveSuccess}
+            style={{ padding: '0.25rem', color: saveSuccess ? 'var(--color-herb-green)' : 'inherit' }}
+            title="Save to Favorites"
+          >
+            <Heart size={18} fill={saveSuccess ? 'var(--color-herb-green)' : 'none'} />
+          </button>
           <ChevronDown
             size={18}
             className={`recipe-card__chevron ${isOpen ? 'recipe-card__chevron--open' : ''}`}
@@ -252,10 +283,16 @@ function HomePage({ health, stats, ingredients, recipes, onGenerate, generating 
             <Camera size={16} />
             Scan ingredients
           </Link>
-          <Link to="/library" className="btn btn--secondary">
-            <Upload size={16} />
-            Add recipes
+          <Link to="/saved" className="btn btn--secondary">
+            <Bookmark size={16} />
+            Saved recipes
           </Link>
+          {(import.meta.env.DEV || import.meta.env.VITE_ENABLE_ADMIN === 'true') && (
+            <Link to="/library" className="btn btn--secondary">
+              <Upload size={16} />
+              Add recipes
+            </Link>
+          )}
         </div>
       </section>
 
@@ -606,6 +643,10 @@ export default function App() {
         <Route
           path="/library"
           element={<LibraryPage stats={stats} refreshStats={refreshStats} />}
+        />
+        <Route
+          path="/saved"
+          element={<SavedRecipesPage />}
         />
       </Routes>
     </Layout>

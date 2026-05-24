@@ -28,9 +28,16 @@ class Settings(BaseSettings):
     GEMINI_MODEL: str = "gemini-2.5-flash"
     EMBEDDING_MODEL: str = "sentence-transformers/all-MiniLM-L6-v2"
 
-    # --- Storage ---
-    CHROMA_PERSIST_DIR: str = "./data/chroma_db"
+    # --- Storage & DB ---
+    SUPABASE_URL: str = ""
+    SUPABASE_KEY: str = ""
 
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        # Clean the Supabase URL if the user accidentally included the REST endpoint
+        if self.SUPABASE_URL.endswith("/rest/v1/") or self.SUPABASE_URL.endswith("/rest/v1"):
+            self.SUPABASE_URL = self.SUPABASE_URL.replace("/rest/v1/", "").replace("/rest/v1", "")
+        self.SUPABASE_URL = self.SUPABASE_URL.rstrip("/")
 
 # Singleton instance used throughout the application
 settings = Settings()

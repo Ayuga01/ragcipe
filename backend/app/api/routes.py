@@ -25,10 +25,14 @@ from app.models.schemas import (
     RecipeChatResponse,
     SubstituteRequest,
     SubstituteResponse,
+    SaveRecipeRequest,
+    SavedRecipeResponse,
+    DeleteRecipeRequest,
 )
 from app.agents.nodes.recipe_chat import recipe_chat_agent
 from app.services.ingestion import IngestionService
 from app.services.vectorstore import get_vectorstore_service
+from app.services.database import get_database_service
 
 logger = logging.getLogger(__name__)
 
@@ -328,3 +332,47 @@ async def ingest_recipes(file: UploadFile = File(...)):
     except Exception as exc:
         logger.error("Ingestion failed: %s", exc, exc_info=True)
         raise HTTPException(status_code=500, detail=str(exc)) from exc
+
+
+# --------------------------------------------------------------------------
+# Saved Recipes (Supabase Relational)
+# --------------------------------------------------------------------------
+
+@router.post("/recipes/save", response_model=SavedRecipeResponse)
+async def save_recipe(request: SaveRecipeRequest):
+    """Save a recipe for a user session."""
+    try:
+        db = get_database_service()
+        data = db.save_recipe(request.session_id, request.recipe.model_dump())
+        if not data:
+            raise HTTPException(status_code=500, detail="Failed to save recipe")
+        return SavedRecipeResponse(**data)
+    except Exception as exc:
+        logger.error("Error saving recipe: %s", exc)
+        raise HTTPException(status_code=500, detail=str(exc))
+
+@router.get("/recipes/saved", response_model=list[SavedRecipeResponse])
+async def get_saved_recipes(session_id: str):
+    """Get all saved recipes for a user session."""
+    if not session_id:
+        raise HTTPException(status_code=400, detail="session_id is required")
+    try:
+        db = get_database_service()
+        records = db.get_saved_recipes(session_id)
+        return [SavedRecipeResponse(**r) for r in records]
+    except Exception as exc:
+        logger.error("Error fetching saved recipes: %s", exc)
+        raise HTTPException(status_code=500, detail=str(exc))
+
+@router.post("/recipes/delete")
+async def delete_saved_recipe(request: DeleteRecipeRequest):
+    """Delete a saved recipe."""
+    try:
+        db = get_database_service()
+        success = db.delete_recipe(request.session_id, request.recipe_id)
+        if not success:
+            raise HTTPException(status_code=404, detail="Recipe not found or permission denied")
+        return {"status": "success"}
+    except Exception as exc:
+        logger.error("Error deleting recipe: %s", exc)
+        raise HTTPException(status_code=500, detail=str(exc))

@@ -138,3 +138,24 @@ class RecipeChatRequest(BaseModel):
 
 class RecipeChatResponse(BaseModel):
     answer: str
+
+
+# ---------------------------------------------------------------------------
+# Saved Recipes
+# ---------------------------------------------------------------------------
+
+class SaveRecipeRequest(BaseModel):
+    session_id: str
+    recipe: Recipe
+
+
+class SavedRecipeResponse(BaseModel):
+    id: str | int
+    session_id: str
+    title: str
+    recipe_data: dict
+    created_at: str
+
+class DeleteRecipeRequest(BaseModel):
+    session_id: str
+    recipe_id: str | int

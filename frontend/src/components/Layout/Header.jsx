@@ -6,8 +6,12 @@ const navLinks = [
   { path: '/', label: 'Home' },
   { path: '/scan', label: 'Scan' },
   { path: '/recipes', label: 'Recipes' },
-  { path: '/library', label: 'Library' },
+  { path: '/saved', label: 'Favorites' },
 ];
+
+if (import.meta.env.DEV || import.meta.env.VITE_ENABLE_ADMIN === 'true') {
+  navLinks.push({ path: '/library', label: 'Library' });
+}
 
 export default function Header() {
   const location = useLocation();
