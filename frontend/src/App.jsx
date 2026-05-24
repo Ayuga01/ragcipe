@@ -18,6 +18,7 @@ import {
   MessageCircle,
   Send,
   Heart,
+  Bookmark,
 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { getSessionId } from './utils/session';
