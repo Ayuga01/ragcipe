@@ -7,8 +7,6 @@ langchain
 langchain-openai
 langchain-community
 langchain-google-genai
-langchain-huggingface
-sentence-transformers
 langgraph
 tavily-python
 pypdf
