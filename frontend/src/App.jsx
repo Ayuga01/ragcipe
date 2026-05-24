@@ -18,8 +18,8 @@ import {
   MessageCircle,
   Send,
   Heart,
-  Bookmark,
 } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
 import { getSessionId } from './utils/session';
 import SavedRecipesPage from './pages/SavedRecipesPage';
 import CameraCapture from './components/Camera/CameraCapture';
@@ -235,7 +235,9 @@ function RecipeCard({ recipe }) {
               ) : (
                 chatHistory.map((msg, idx) => (
                   <div key={idx} className={`chat-message chat-message--${msg.role}`}>
-                    <div className="chat-bubble">{msg.content}</div>
+                    <div className="chat-bubble">
+                      <ReactMarkdown>{msg.content}</ReactMarkdown>
+                    </div>
                   </div>
                 ))
               )}
