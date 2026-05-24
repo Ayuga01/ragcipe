@@ -1,6 +1,8 @@
 # Multimodal Recipe Generator
 
-A full-stack recipe assistant with a FastAPI backend, LangGraph agent flow, Chroma recipe retrieval, Gemini image ingredient detection, Tavily web fallback, and a Vite React frontend.
+🌟 **Live Demo:** [https://ragcipe.vercel.app/](https://ragcipe.vercel.app/)
+
+A full-stack recipe assistant with a FastAPI backend, LangGraph agent flow, Supabase vector retrieval, Gemini image ingredient detection, Tavily web fallback, and a Vite React frontend.
 
 ## Project Layout
 
@@ -29,7 +31,8 @@ OPENAI_API_KEY=...
 OPENAI_MODEL=gpt-4o
 TAVILY_API_KEY=...
 GOOGLE_API_KEY=...
-CHROMA_PERSIST_DIR=./data/chroma_db
+SUPABASE_URL=...
+SUPABASE_KEY=...
 ```
 
 `OPENAI_API_KEY` is required for recipe generation. `GOOGLE_API_KEY` is required for image ingredient detection. `TAVILY_API_KEY` is optional; if it is missing, the backend skips web search and still generates from local retrieval plus the user's ingredients.
@@ -94,6 +97,6 @@ You can also upload `backend/data/sample_recipes.json` from the Library page in 
 
 ## Notes
 
-- Local Chroma data lives in `backend/data/chroma_db/` and is ignored by Git.
+- Vector embeddings are stored in your Supabase project.
 - `backend/.venv/`, `frontend/node_modules/`, `.env`, and OS/editor files are ignored by Git.
 - Keep `backend/pyproject.toml` and `backend/uv.lock` as the Python dependency source of truth.
