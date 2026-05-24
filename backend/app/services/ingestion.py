@@ -78,7 +78,11 @@ class IngestionService:
             raise ValueError(f"Unsupported file type: {file_type}")
 
         chunks = _splitter.split_documents(documents)
-        self._vectorstore.add_documents(chunks)
+        
+        batch_size = 100
+        for i in range(0, len(chunks), batch_size):
+            self._vectorstore.add_documents(chunks[i:i+batch_size])
+            
         logger.info("Ingested %d chunks from %s", len(chunks), path.name)
         return len(chunks)
 
@@ -102,7 +106,11 @@ class IngestionService:
             documents.append(Document(page_content=text, metadata=metadata))
 
         chunks = _splitter.split_documents(documents)
-        self._vectorstore.add_documents(chunks)
+        
+        batch_size = 100
+        for i in range(0, len(chunks), batch_size):
+            self._vectorstore.add_documents(chunks[i:i+batch_size])
+            
         logger.info("Ingested %d chunks from JSON data", len(chunks))
         return len(chunks)
 
