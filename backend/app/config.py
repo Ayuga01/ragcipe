@@ -26,7 +26,7 @@ class Settings(BaseSettings):
     # --- Model Defaults ---
     OPENAI_MODEL: str = "gpt-5.4-mini"
     GEMINI_MODEL: str = "gemini-2.5-flash"
-    EMBEDDING_MODEL: str = "sentence-transformers/all-MiniLM-L6-v2"
+    EMBEDDING_MODEL: str = "text-embedding-3-small"
 
     # --- Storage & DB ---
     SUPABASE_URL: str = ""

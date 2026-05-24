@@ -17,7 +17,7 @@ from langchain_community.vectorstores.supabase import SupabaseVectorStore
 from langchain_community.retrievers import BM25Retriever
 from langchain_core.documents import Document
 from langchain_core.retrievers import BaseRetriever
-from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_openai import OpenAIEmbeddings
 
 from app.config import settings
 
@@ -115,10 +115,8 @@ class VectorStoreService:
         self.supabase_url = settings.SUPABASE_URL
         self.supabase_key = settings.SUPABASE_KEY
 
-        self._embeddings = HuggingFaceEmbeddings(
-            model_name=settings.EMBEDDING_MODEL,
-            model_kwargs={"device": "cpu"},
-            encode_kwargs={"normalize_embeddings": True},
+        self._embeddings = OpenAIEmbeddings(
+            model=settings.EMBEDDING_MODEL,
         )
 
         # Fallback to avoid crashing locally if keys aren't set yet
